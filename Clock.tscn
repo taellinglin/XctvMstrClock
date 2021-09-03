@@ -1,0 +1,375 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://obj/o.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://o.gd" type="Script" id=2]
+[ext_resource path="res://vowels.gd" type="Script" id=3]
+[ext_resource path="res://obj/a.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://obj/u.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://obj/i.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://obj/e.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://audio3d/i.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio3d/ticktock.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio3d/e.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio3d/a.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio3d/u.wav" type="AudioStream" id=12]
+[ext_resource path="res://_a.gd" type="Script" id=13]
+[ext_resource path="res://_i.gd" type="Script" id=14]
+[ext_resource path="res://_u.gd" type="Script" id=15]
+[ext_resource path="res://_e.gd" type="Script" id=16]
+[ext_resource path="res://_o.gd" type="Script" id=17]
+[ext_resource path="res://obj/daemon_red.tres" type="Material" id=18]
+[ext_resource path="res://obj/b.obj" type="ArrayMesh" id=19]
+[ext_resource path="res://obj/d.obj" type="ArrayMesh" id=20]
+[ext_resource path="res://obj/daemon_blue.tres" type="Material" id=21]
+[ext_resource path="res://b.gd" type="Script" id=22]
+[ext_resource path="res://d.gd" type="Script" id=23]
+[ext_resource path="res://audio3d/consonants.wav" type="AudioStream" id=24]
+[ext_resource path="res://AudioStreamPlayer.gd" type="Script" id=25]
+
+[sub_resource type="VisualShaderNodeColorFunc" id=1]
+default_input_values = [ 0, Vector3( 255, 255, 255 ) ]
+
+[sub_resource type="VisualShader" id=2]
+code = "shader_type spatial;
+render_mode cull_disabled, specular_schlick_ggx, ensure_correct_normals;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ColorFunc:2
+	vec3 n_in2p0 = vec3(255.00000, 255.00000, 255.00000);
+	vec3 n_out2p0;
+	{
+		vec3 c = n_in2p0;
+		float max1 = max(c.r, c.g);
+		float max2 = max(max1, c.b);
+		float max3 = max(max1, max2);
+		n_out2p0 = vec3(max3, max3, max3);
+	}
+
+// Output:0
+	EMISSION = n_out2p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+modes/cull = 2
+flags/ensure_correct_normals = true
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( 40, 260 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 5 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+params_diffuse_mode = 4
+params_cull_mode = 2
+albedo_color = Color( 1, 0.913725, 0, 1 )
+emission_enabled = true
+emission = Color( 0.992157, 1, 0, 1 )
+emission_energy = 5.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=5]
+params_diffuse_mode = 4
+params_cull_mode = 2
+albedo_color = Color( 1, 0, 0.905882, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0.929412, 1 )
+emission_energy = 5.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=6]
+params_diffuse_mode = 4
+params_cull_mode = 2
+albedo_color = Color( 0, 1, 0.976471, 1 )
+emission_enabled = true
+emission = Color( 0, 1, 0.952941, 1 )
+emission_energy = 5.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=7]
+params_diffuse_mode = 4
+params_cull_mode = 2
+albedo_color = Color( 1, 0.435294, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0.435294, 0, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="Environment" id=8]
+background_mode = 1
+background_camera_feed_id = 2
+ambient_light_energy = 0.0
+dof_blur_near_enabled = true
+dof_blur_near_distance = 0.18
+dof_blur_near_quality = 0
+glow_intensity = 3.7
+glow_strength = 1.09
+glow_bloom = 0.47
+adjustment_enabled = true
+adjustment_saturation = 8.0
+
+[node name="Spinner" type="Spatial"]
+
+[node name="o" type="MeshInstance" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+material_override = SubResource( 3 )
+mesh = ExtResource( 1 )
+material/0 = null
+script = ExtResource( 2 )
+
+[node name="a" type="MeshInstance" parent="o"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -1.66483, 0, 1.62882 )
+material_override = SubResource( 4 )
+mesh = ExtResource( 4 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_a" type="AudioStreamPlayer3D" parent="o/a"]
+transform = Transform( 0.512821, 0, 0, 0, 0.512821, 0, 0, 0, 0.512821, 0, 0, 0 )
+stream = ExtResource( 11 )
+autoplay = true
+emission_angle_enabled = true
+doppler_tracking = 2
+script = ExtResource( 13 )
+
+[node name="e" type="MeshInstance" parent="o"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -1.66418, 0, -1.62361 )
+material_override = SubResource( 5 )
+mesh = ExtResource( 7 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_e" type="AudioStreamPlayer3D" parent="o/e"]
+transform = Transform( 0.512821, 0, 0, 0, 0.512821, 0, 0, 0, 0.512821, 0.00392717, 0, -0.50914 )
+stream = ExtResource( 10 )
+autoplay = true
+emission_angle_enabled = true
+doppler_tracking = 2
+script = ExtResource( 16 )
+
+[node name="i" type="MeshInstance" parent="o"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 1.35158, 0, -1.3277 )
+material_override = SubResource( 6 )
+mesh = ExtResource( 6 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_i" type="AudioStreamPlayer3D" parent="o/i"]
+transform = Transform( 0.512821, 0, 0, 0, 0.512821, 0, 0, 0, 0.512821, 0.507512, 0, -0.526308 )
+stream = ExtResource( 8 )
+autoplay = true
+emission_angle_enabled = true
+doppler_tracking = 2
+script = ExtResource( 14 )
+
+[node name="u" type="MeshInstance" parent="o"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 1.59314, 0, 1.65719 )
+material_override = SubResource( 7 )
+mesh = ExtResource( 5 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_u" type="AudioStreamPlayer3D" parent="o/u"]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0.679222, 0, -0.017534 )
+stream = ExtResource( 12 )
+autoplay = true
+emission_angle_enabled = true
+script = ExtResource( 15 )
+
+[node name="_o" type="AudioStreamPlayer3D" parent="o"]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0 )
+stream = ExtResource( 9 )
+unit_size = 30.0
+autoplay = true
+emission_angle_enabled = true
+emission_angle_degrees = 25.0
+emission_angle_filter_attenuation_db = -16.0
+attenuation_filter_cutoff_hz = 1000.0
+attenuation_filter_db = -60.0
+doppler_tracking = 2
+script = ExtResource( 17 )
+
+[node name="consonants" type="Spatial" parent="o"]
+
+[node name="b" type="MeshInstance" parent="o/consonants"]
+transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.177779, 0, -0.325287 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 18 )
+script = ExtResource( 22 )
+
+[node name="d" type="MeshInstance" parent="o/consonants"]
+transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.198632, 0, 0.957049 )
+mesh = ExtResource( 20 )
+material/0 = ExtResource( 21 )
+script = ExtResource( 23 )
+
+[node name="q" type="MeshInstance" parent="o/consonants"]
+transform = Transform( -1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0.176302, 0, 0.339443 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 18 )
+script = ExtResource( 22 )
+
+[node name="p" type="MeshInstance" parent="o/consonants"]
+transform = Transform( -1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0.197154, 0, -0.942893 )
+mesh = ExtResource( 20 )
+material/0 = ExtResource( 21 )
+script = ExtResource( 23 )
+
+[node name="o2" type="MeshInstance" parent="."]
+transform = Transform( -6.55671e-08, -1.5, 0, 1.5, -6.55671e-08, 0, 0, 0, 1.5, 0, 0, 0 )
+material_override = SubResource( 3 )
+mesh = ExtResource( 1 )
+material/0 = null
+script = ExtResource( 2 )
+
+[node name="a" type="MeshInstance" parent="o2"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -1.66483, 0, 1.62882 )
+material_override = SubResource( 4 )
+mesh = ExtResource( 4 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_a" type="AudioStreamPlayer3D" parent="o2/a"]
+transform = Transform( 0.512821, 0, 0, 0, 0.512821, 0, 0, 0, 0.512821, 0, 0, 0 )
+stream = ExtResource( 11 )
+autoplay = true
+emission_angle_enabled = true
+doppler_tracking = 2
+script = ExtResource( 13 )
+
+[node name="e" type="MeshInstance" parent="o2"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -1.66418, 0, -1.62361 )
+material_override = SubResource( 5 )
+mesh = ExtResource( 7 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_e" type="AudioStreamPlayer3D" parent="o2/e"]
+transform = Transform( 0.512821, 0, 0, 0, 0.512821, 0, 0, 0, 0.512821, 0.00392717, 0, -0.50914 )
+stream = ExtResource( 10 )
+autoplay = true
+emission_angle_enabled = true
+doppler_tracking = 2
+script = ExtResource( 16 )
+
+[node name="i" type="MeshInstance" parent="o2"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 1.35158, 0, -1.3277 )
+material_override = SubResource( 6 )
+mesh = ExtResource( 6 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_i" type="AudioStreamPlayer3D" parent="o2/i"]
+transform = Transform( 0.512821, 0, 0, 0, 0.512821, 0, 0, 0, 0.512821, 0.507512, 0, -0.526308 )
+stream = ExtResource( 8 )
+autoplay = true
+emission_angle_enabled = true
+doppler_tracking = 2
+script = ExtResource( 14 )
+
+[node name="u" type="MeshInstance" parent="o2"]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 1.59314, 0, 1.65719 )
+material_override = SubResource( 7 )
+mesh = ExtResource( 5 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="_u" type="AudioStreamPlayer3D" parent="o2/u"]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0.679222, 0, -0.017534 )
+stream = ExtResource( 12 )
+autoplay = true
+emission_angle_enabled = true
+script = ExtResource( 15 )
+
+[node name="_o" type="AudioStreamPlayer3D" parent="o2"]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0 )
+stream = ExtResource( 9 )
+unit_size = 30.0
+autoplay = true
+emission_angle_enabled = true
+emission_angle_degrees = 25.0
+emission_angle_filter_attenuation_db = -16.0
+attenuation_filter_cutoff_hz = 1000.0
+attenuation_filter_db = -60.0
+doppler_tracking = 2
+script = ExtResource( 17 )
+
+[node name="consonants" type="Spatial" parent="o2"]
+
+[node name="b" type="MeshInstance" parent="o2/consonants"]
+transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.177779, 0, -0.325287 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 18 )
+script = ExtResource( 22 )
+
+[node name="d" type="MeshInstance" parent="o2/consonants"]
+transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.198632, 0, 0.957049 )
+mesh = ExtResource( 20 )
+material/0 = ExtResource( 21 )
+script = ExtResource( 23 )
+
+[node name="q" type="MeshInstance" parent="o2/consonants"]
+transform = Transform( -1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0.176302, 0, 0.339443 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 18 )
+script = ExtResource( 22 )
+
+[node name="p" type="MeshInstance" parent="o2/consonants"]
+transform = Transform( -1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0.197154, 0, -0.942893 )
+mesh = ExtResource( 20 )
+material/0 = ExtResource( 21 )
+script = ExtResource( 23 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.31785, 0 )
+environment = SubResource( 8 )
+doppler_tracking = 2
+current = true
+fov = 152.6
+size = 214.65
+near = 0.01
+far = 317.2
+
+[node name="Listener" type="Listener" parent="Camera"]
+
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0 )
+environment = SubResource( 8 )
+doppler_tracking = 2
+projection = 1
+fov = 179.0
+near = 0.01
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+stream_paused = true
+script = ExtResource( 25 )
+
+[connection signal="finished" from="o/a/_a" to="o/a/_a" method="_on__a_finished"]
+[connection signal="finished" from="o/e/_e" to="o/e/_e" method="_on__e_finished"]
+[connection signal="finished" from="o/i/_i" to="o/i/_i" method="_on__i_finished"]
+[connection signal="finished" from="o/u/_u" to="o/u/_u" method="_on__u_finished"]
+[connection signal="finished" from="o/_o" to="o/_o" method="_on__o_finished"]
+[connection signal="finished" from="o2/a/_a" to="o2/a/_a" method="_on__a_finished"]
+[connection signal="finished" from="o2/e/_e" to="o2/e/_e" method="_on__e_finished"]
+[connection signal="finished" from="o2/i/_i" to="o2/i/_i" method="_on__i_finished"]
+[connection signal="finished" from="o2/u/_u" to="o2/u/_u" method="_on__u_finished"]
+[connection signal="finished" from="o2/_o" to="o2/_o" method="_on__o_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="o" method="_on_AudioStreamPlayer_finished"]

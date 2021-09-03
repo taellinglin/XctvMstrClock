@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=1]
+
+[sub_resource type="Environment" id=3]
+background_mode = 5
+background_color = Color( 0.109804, 0, 0.117647, 1 )
+glow_enabled = true
+glow_intensity = 1.33
+glow_bloom = 0.1
+glow_blend_mode = 0
+
+[node name="Main" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.87932 )
+environment = SubResource( 3 )
+current = true
+fov = 106.7
+
+[node name="Label3D" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00759935, -0.0185413 )
+script = ExtResource( 1 )
+text = "Text"
+text_size = 1.0
+font = null
+align = 0
+color = Color( 1, 0, 0, 1 )
+metallic = 0.0
+roughness = 0.5
+emission_color = Color( 1, 0, 0, 1 )
+emission_strength = 1.0
+extrude = 0.0
+max_steps = 256
+step_size = 1.0
