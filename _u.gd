@@ -13,7 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 #	pass
-	pitch = get_parent().get_parent().get_clocks()[2]
+	pitch = get_parent().get_parent().get_clocks()[0]
 	set_pitch_scale(pitch)
 	rotate_z(get_parent().rotation.z)
 	rotate_y(get_parent().rotation.y)

@@ -14,7 +14,7 @@ func _ready():
 func _process(delta):
 #	pass
 	pitch = get_parent().get_clocks()[0]
-	set_pitch_scale(sin(pitch/10000))
+	set_pitch_scale(1/(pitch+1))
 	
 	rotate_z(get_parent().rotation.z)
 	rotate_y(get_parent().rotation.y)
