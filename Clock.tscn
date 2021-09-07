@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://obj/o.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://o.gd" type="Script" id=2]
+[ext_resource path="res://o2.gd" type="Script" id=2]
 [ext_resource path="res://vowels.gd" type="Script" id=3]
 [ext_resource path="res://obj/a.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://obj/u.obj" type="ArrayMesh" id=5]
@@ -25,6 +25,9 @@
 [ext_resource path="res://d.gd" type="Script" id=23]
 [ext_resource path="res://audio3d/consonants.wav" type="AudioStream" id=24]
 [ext_resource path="res://AudioStreamPlayer.gd" type="Script" id=25]
+[ext_resource path="res://font/Daemon Full Working (1).ttf" type="DynamicFontData" id=26]
+[ext_resource path="res://Clock.gd" type="Script" id=27]
+[ext_resource path="res://Button.gd" type="Script" id=28]
 
 [sub_resource type="VisualShaderNodeColorFunc" id=1]
 default_input_values = [ 0, Vector3( 255, 255, 255 ) ]
@@ -125,7 +128,20 @@ glow_bloom = 0.47
 adjustment_enabled = true
 adjustment_saturation = 8.0
 
+[sub_resource type="DynamicFont" id=9]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 26 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 26 )
+
 [node name="Spinner" type="Spatial"]
+script = ExtResource( 27 )
 
 [node name="o" type="MeshInstance" parent="."]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
@@ -362,6 +378,119 @@ stream = ExtResource( 24 )
 stream_paused = true
 script = ExtResource( 25 )
 
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1920.0
+margin_bottom = 256.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="speed" type="HSlider" parent="Panel"]
+margin_left = 144.0
+margin_top = 32.0
+margin_right = 1888.0
+margin_bottom = 68.0
+min_value = -0.01
+max_value = 0.01
+step = 0.001
+tick_count = 9
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="speed_label" type="Label" parent="Panel"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 130.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 9 )
+text = "speed:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clock_0 offset" type="HSlider" parent="Panel"]
+margin_left = 200.0
+margin_top = 88.0
+margin_right = 1888.0
+margin_bottom = 124.0
+min_value = -1000.0
+max_value = 1000.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clock_0 offset label" type="Label" parent="Panel"]
+margin_left = 32.0
+margin_top = 88.0
+margin_right = 184.0
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 9 )
+text = "[0]offset:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clock_1 offset" type="HSlider" parent="Panel"]
+margin_left = 200.0
+margin_top = 144.0
+margin_right = 1888.0
+margin_bottom = 180.0
+min_value = -1000.0
+max_value = 1000.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clock_1 offset label" type="Label" parent="Panel"]
+margin_left = 32.0
+margin_top = 144.0
+margin_right = 184.0
+margin_bottom = 175.0
+custom_fonts/font = SubResource( 9 )
+text = "[1]offset:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clock_2 offset" type="HSlider" parent="Panel"]
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 1888.0
+margin_bottom = 236.0
+min_value = -1000.0
+max_value = 1000.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clock_2 offset label" type="Label" parent="Panel"]
+margin_left = 32.0
+margin_top = 200.0
+margin_right = 184.0
+margin_bottom = 231.0
+custom_fonts/font = SubResource( 9 )
+text = "[2]offset:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 24.0
+margin_top = 1016.0
+margin_right = 144.0
+margin_bottom = 1053.0
+custom_fonts/font = SubResource( 10 )
+text = "show/hide"
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="finished" from="o/a/_a" to="o/a/_a" method="_on__a_finished"]
 [connection signal="finished" from="o/e/_e" to="o/e/_e" method="_on__e_finished"]
 [connection signal="finished" from="o/i/_i" to="o/i/_i" method="_on__i_finished"]
@@ -373,3 +502,4 @@ script = ExtResource( 25 )
 [connection signal="finished" from="o2/u/_u" to="o2/u/_u" method="_on__u_finished"]
 [connection signal="finished" from="o2/_o" to="o2/_o" method="_on__o_finished"]
 [connection signal="finished" from="AudioStreamPlayer" to="o" method="_on_AudioStreamPlayer_finished"]
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]

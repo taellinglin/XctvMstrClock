@@ -4,25 +4,31 @@ extends MeshInstance
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-const speed = 0.000001
+export var speed = 0.000001
 var clock_0 = 0
 var clock_1 = 0
 var clock_2 = 0
-
+export var clock_0_offset = 0
+export var clock_1_offset = 0
+export var clock_2_offset = 0
+var clock_parent
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(true)
 
 func _process(delta):
-	clock_0 += 1
-	if clock_0 == 100:
+	clock_0_offset = get_parent().get_node("Panel").get_node("clock_0 offset").value
+	clock_1_offset = get_parent().get_node("Panel").get_node("clock_1 offset").value
+	clock_2_offset = get_parent().get_node("Panel").get_node("clock_2 offset").value
+	clock_0 += clock_0_offset
+	if clock_0 >= 100 or clock_0 <= -100:
 		clock_0 = 0
-		clock_1 += 1
-		if clock_1 == 100:
+		clock_1 += clock_1_offset
+		if clock_1 >= 100 or clock_1<= -100:
 			clock_1 = 0
 			clock_0 = 0
-			clock_2 += 1
-			if clock_2 >= 1200:
+			clock_2 += clock_2_offset
+			if clock_2 >= 1200 or clock_2 <= -1200:
 				clock_2 = 0
 				clock_1 = 0
 				clock_0 = 0
