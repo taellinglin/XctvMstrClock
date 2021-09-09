@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ballad.mp3-799021a7d62f956ff39e865106bfed0e.mp3str"
+
+[deps]
+
+source_file="res://music/Ballad.mp3"
+dest_files=[ "res://.import/Ballad.mp3-799021a7d62f956ff39e865106bfed0e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
