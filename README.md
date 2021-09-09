@@ -5,8 +5,8 @@ This program is a sort of a Thelemic Audio-Visual tool. It synchronizes certain 
  No install, this just just a standalone app you can build with Godot 3.3.3
 
 # Credits
-"Daemon" Font - Siamang.prime(Ben Poulsen)
-Prgramming - Tael Ling Lin(Kazuna Nakama)
-Sounds - Alter Ego Marie Oak Soundbank
-Audio App -  FL Studio 20
-Game Engine - Godot 3.3.3
+"Daemon" Font - Siamang.prime(Ben Poulsen)<br />
+Prgramming - Tael Ling Lin(Kazuna Nakama)<br />
+Sounds - Alter Ego Marie Oak Soundbank<br />
+Audio App -  FL Studio 20<br />
+Game Engine - Godot 3.3.3<br />
